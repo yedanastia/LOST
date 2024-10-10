@@ -10,7 +10,7 @@ body {
     background-color: black !important; /* Black background */
     color: #00FF00 !important; /* Green text */
     font-family: 'VT323', monospace !important; /* ROM-like font */
-    font-size: 18px !important; /* Larger font size */
+    font-size: 40px !important; /* Increased font size to 40px */
     display: flex;
     justify-content: space-between; /* Separate left and right elements */
     height: 100vh;
@@ -31,10 +31,10 @@ input {
     background-color: black !important;
     color: #00FF00 !important;
     font-family: 'VT323', monospace !important;
-    font-size: 18px !important; /* Bigger font size for readability */
+    font-size: 40px !important; /* Increased font size to 40px */
     border: none;
     outline: none;
-    width: 300px; /* Adjust width for better look */
+    width: 400px; /* Adjust width for better look with larger text */
     margin-left: 10px; /* Space between C:\> and input */
 }
 
@@ -43,11 +43,11 @@ input {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 24px !important; /* Larger font for the timer */
+    font-size: 40px !important; /* Match general text size */
     color: #00FF00; /* Green timer */
 }
 
 /* Timer display in format 00:00 */
 #timer {
-    font-size: 24px !important; /* Adjust timer size */
+    font-size: 40px !important; /* Increase timer size to match text */
 }
