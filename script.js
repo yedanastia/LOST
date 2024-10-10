@@ -61,15 +61,29 @@ setInterval(() => {
     }
 }, 1000);
 
+// Function to show the message
+function showMessage() {
+    const messageElement = document.getElementById("message");
+    messageElement.textContent = "Code accepted. Timer reset."; // Set the message text
+    messageElement.style.display = "block"; // Show the message
+
+    // Hide the message after 5 seconds
+    setTimeout(() => {
+        messageElement.style.display = "none"; // Hide the message
+    }, 5000); // 5000 milliseconds = 5 seconds
+}
+
 // Function to check the input code
 function checkCode() {
     const inputValue = codeInput.value;
     if (inputValue === "4 8 15 16 23 42") {
-        timeLeft = 90; // Reset the timer back to 5 minutes
+        timeLeft = 300; // Reset the timer back to 5 minutes
         codeInput.value = ""; // Clear the input
         showCursor(); // Show cursor after input
+        showMessage(); // Show the message when the code is correct
     }
 }
+
 
 // Event listener for pressing Enter key
 codeInput.addEventListener("keydown", function (event) {
