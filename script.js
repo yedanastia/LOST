@@ -1,69 +1,59 @@
-// script.js
-let countdown;
-let timeLeft = 300;  // 5 minutes = 300 seconds
-let audioPlayed = false;
-const correctCode = '4,8,15,16,23,42'; // Correct sequence of numbers
-
-const timerElement = document.getElementById('timer');
-const audioElement = document.getElementById('alertAudio');
+let time = 300; // 5 minutes in seconds
+let countdownInterval;
+let warningAudio = new Audio('alert.mp3'); // Play sound when there's 1 minute left
 
 function startCountdown() {
-  countdown = setInterval(() => {
-    timeLeft--;
-    updateTimer();
-
-    if (timeLeft === 60 && !audioPlayed) {
-      playAudio();
-    }
-
-    if (timeLeft <= 0) {
-      clearInterval(countdown);
-      showRepeatedMessage();
-    }
-  }, 1000);
+    countdownInterval = setInterval(updateTimer, 1000);
 }
 
 function updateTimer() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    if (seconds < 10) seconds = '0' + seconds;
 
-function playAudio() {
-  audioElement.play();
-  audioPlayed = true;
-}
+    document.getElementById('timer').textContent = `${minutes}:${seconds}`;
 
-function stopAudio() {
-  audioElement.pause();
-  audioElement.currentTime = 0;  // Reset audio to the start
+    if (time === 60) {
+        warningAudio.play(); // Play warning sound when 1 minute left
+    }
+
+    if (time === 0) {
+        clearInterval(countdownInterval);
+        display0815(); // Call function to fill screen with 0815
+    } else {
+        time--;
+    }
 }
 
 function checkCode() {
-  const userInput = document.getElementById('codeInput').value;
-  if (userInput === correctCode) {
-    resetCountdown();
-  }
+    const input = document.getElementById('code-input').value.trim();
+    const correctCode = "4 8 15 16 23 42";
+
+    if (input === correctCode) {
+        warningAudio.pause(); // Stop sound
+        time = 300; // Reset to 5 minutes
+        document.getElementById('timer').textContent = "05:00";
+        document.getElementById('code-input').value = ''; // Clear input
+    }
 }
 
-function resetCountdown() {
-  clearInterval(countdown);
-  timeLeft = 300;
-  updateTimer();
-  stopAudio();
-  audioPlayed = false;
-  startCountdown();
+function display0815() {
+    document.body.innerHTML = ''; // Clear the body content
+
+    let interval = setInterval(() => {
+        let message = document.createElement('p');
+        message.textContent = '0815';
+        message.style.color = '#00FF00'; // Green text
+        message.style.fontFamily = 'VT323, monospace'; // ROM-like font
+        message.style.fontSize = '40px';
+        message.style.margin = '0';
+        document.body.appendChild(message);
+
+        // Make it fill up the screen faster
+        if (document.body.scrollHeight >= window.innerHeight * 2) {
+            clearInterval(interval); // Stop when the screen is filled
+        }
+    }, 50); // Rapid interval for filling up the screen
 }
 
-function showRepeatedMessage() {
-  document.body.innerHTML = '<div id="repeatedMessage">0815</div>';
-  document.getElementById('repeatedMessage').style.fontSize = '5em';
-  document.getElementById('repeatedMessage').style.color = 'red';
-
-  setInterval(() => {
-    document.getElementById('repeatedMessage').textContent += ' 0815';
-  }, 1000);
-}
-
-// Start the countdown when the page loads
-window.onload = startCountdown;
+startCountdown();
