@@ -1,59 +1,40 @@
-let time = 300; // 5 minutes in seconds
-let countdownInterval;
-let warningAudio = new Audio('alert.mp3'); // Sound file for 1 minute warning
+// Timer logic
+let timeLeft = 300; // Start time is 5 minutes (300 seconds)
 
-function startCountdown() {
-    countdownInterval = setInterval(updateTimer, 1000);
-}
+const timerElement = document.getElementById("timer");
+const codeInput = document.getElementById("code-input");
 
+// Update timer display in format 00:00
 function updateTimer() {
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-    if (seconds < 10) seconds = '0' + seconds;
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
 
-    document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+    // Format the timer with leading zeroes
+    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
 
-    if (time === 60) {
-        warningAudio.play(); // Play warning sound when 1 minute is left
-    }
-
-    if (time === 0) {
-        clearInterval(countdownInterval);
-        display0815(); // Display "0815" when time reaches zero
+setInterval(() => {
+    if (timeLeft > 0) {
+        timeLeft--;
+        updateTimer();
     } else {
-        time--;
+        // Handle timer reaching zero, show 0815 or other logic
+        document.body.innerHTML = '<p>0815</p>'; // This will fill the screen with 0815
     }
-}
+}, 1000);
 
+// Function to check the input code
 function checkCode() {
-    const input = document.getElementById('code-input').value.trim();
-    const correctCode = "4 8 15 16 23 42";
-
-    if (input === correctCode) {
-        warningAudio.pause(); // Stop warning sound
-        time = 300; // Reset to 5 minutes
-        document.getElementById('timer').textContent = "05:00";
-        document.getElementById('code-input').value = ''; // Clear input
+    const inputValue = codeInput.value;
+    if (inputValue === "4 8 15 16 23 42") {
+        timeLeft = 300; // Reset the timer back to 5 minutes
+        codeInput.value = ""; // Clear the input
     }
 }
 
-function display0815() {
-    document.body.innerHTML = ''; // Clear body content
-
-    let interval = setInterval(() => {
-        let message = document.createElement('p');
-        message.textContent = '0815';
-        message.style.color = '#00FF00'; // Green text
-        message.style.fontFamily = 'VT323, monospace'; // ROM-like font
-        message.style.fontSize = '40px';
-        message.style.margin = '0';
-        document.body.appendChild(message);
-
-        // Make it fill up the screen faster
-        if (document.body.scrollHeight >= window.innerHeight * 2) {
-            clearInterval(interval); // Stop when the screen is filled
-        }
-    }, 50); // Rapid interval for filling up the screen
-}
-
-startCountdown();
+// Event listener for pressing Enter key
+codeInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        checkCode(); // Call the checkCode function when Enter is pressed
+    }
+});
