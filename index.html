@@ -5,13 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Lost Timer</title>
+    <style>
+        /* Add this CSS for in-line styling if needed */
+        body {
+            background-color: black; /* Black background */
+            color: #00FF00; /* Green text */
+            font-family: 'ROM'; /* Ensure you have the ROM font loaded */
+            font-size: 40px; /* Font size for text */
+        }
+
+        #timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 40px; /* Font size for timer */
+        }
+
+        input {
+            color: #00FF00; /* Green text */
+            background-color: black; /* Black background for input */
+            border: none; /* Remove border */
+            font-size: 40px; /* Increase font size for input */
+            outline: none; /* Remove outline */
+        }
+
+        #message {
+            color: #00FF00; /* Green color for messages */
+            font-size: 40px; /* Font size for messages */
+        }
+
+        #failureMessages {
+            color: #FF0000; /* Red color for failure messages */
+            font-size: 40px; /* Font size for failure messages */
+            position: absolute; /* Positioning */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Centering transform */
+        }
+    </style>
 </head>
 <body>
-    <div id="timer" style="position: absolute; top: 10px; right: 10px;"></div>
+    <div id="timer"></div>
     <div style="position: absolute; top: 10px; left: 10px;">
         <span>C:\></span>
         <input type="text" id="code-input" />
-        <div id="message" style="display: none; color: #00FF00; font-size: 40px;"></div> <!-- Message element -->
+        <div id="message" style="display: none;"></div> <!-- Message element -->
     </div>
     <script src="script.js"></script>
 </body>
