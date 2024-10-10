@@ -38,3 +38,19 @@ codeInput.addEventListener("keydown", function (event) {
         checkCode(); // Call the checkCode function when Enter is pressed
     }
 });
+
+// Function to toggle fullscreen
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen(); // Request fullscreen
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen(); // Exit fullscreen
+        }
+    }
+}
+
+// Automatically request fullscreen when the page loads
+window.onload = () => {
+    toggleFullScreen(); // Request fullscreen on load
+};
