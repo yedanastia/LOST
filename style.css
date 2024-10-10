@@ -1,31 +1,42 @@
+/* Reset body styles to make sure we control everything */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: black;
-    color: #00FF00; /* Green text */
-    font-family: "VT323", monospace; /* Use a ROM-like font */
-    font-size: 14px;
+    background-color: black !important; /* Force background color */
+    color: #00FF00 !important; /* Force green text */
+    font-family: 'VT323', monospace !important; /* Force ROM-like font */
+    font-size: 14px !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+}
+
+#timer {
+    font-size: 24px !important;
+    color: #00FF00 !important; /* Ensure timer text is green */
 }
 
 input {
-    background-color: black;
-    color: #00FF00;
-    font-family: inherit;
-    font-size: inherit;
+    background-color: black !important;
+    color: #00FF00 !important;
+    font-family: 'VT323', monospace !important; /* Apply custom font to input */
+    font-size: 14px !important;
     border: none;
     outline: none;
     text-align: center;
 }
 
 button {
-    background-color: black;
-    color: #00FF00;
-    font-family: inherit;
-    font-size: inherit;
+    background-color: black !important;
+    color: #00FF00 !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 14px !important;
     border: 1px solid #00FF00;
     padding: 5px;
     cursor: pointer;
@@ -33,10 +44,13 @@ button {
 }
 
 button:hover {
-    background-color: #00FF00;
-    color: black;
+    background-color: #00FF00 !important;
+    color: black !important;
 }
 
-#timer {
-    font-size: 24px;
+/* Force the "0815" display to use the correct color and font */
+p {
+    color: #00FF00 !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 40px !important;
 }
