@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOST Countdown</title>
+    <!-- Correct Google Font link -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> <!-- ROM-like font -->
 </head>
 <body>
-    <div id="countdown">
-        <p id="timer">05:00</p> <!-- Countdown display -->
+    <!-- Input and Timer at the top -->
+    <div id="input-area">
+        <span>C:\></span> <!-- Simulate the DOS prompt -->
+        <input type="text" id="code-input" maxlength="15" autofocus> <!-- Input field without button -->
     </div>
 
-    <div id="input-area">
-        <input type="text" id="code-input" maxlength="15" placeholder="" autofocus>
-        <button onclick="checkCode()">Submit</button>
+    <!-- Timer moved to top-right -->
+    <div id="countdown">
+        <p id="timer">05:00</p> <!-- Countdown display -->
     </div>
 
     <script src="script.js"></script> <!-- Link to your JavaScript -->
