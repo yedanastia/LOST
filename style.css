@@ -5,59 +5,49 @@
     box-sizing: border-box;
 }
 
-/* Force styles on the body */
+/* Body settings to create DOS-style feel */
 body {
-    background-color: black !important; /* Ensure black background */
-    color: #00FF00 !important; /* Force green text */
-    font-family: 'VT323', monospace !important; /* Ensure ROM-like font */
-    font-size: 14px !important;
+    background-color: black !important; /* Black background */
+    color: #00FF00 !important; /* Green text */
+    font-family: 'VT323', monospace !important; /* ROM-like font */
+    font-size: 18px !important; /* Larger font size */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between; /* Separate left and right elements */
     height: 100vh;
-    margin: 0;
 }
 
-/* Timer display */
-#timer {
-    font-size: 24px !important;
-    color: #00FF00 !important; /* Green color for the timer */
+/* Input-area styling for C:\> and input field on the left */
+#input-area {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #00FF00; /* Green for the DOS prompt */
 }
 
-/* Input styles */
+/* Input field */
 input {
     background-color: black !important;
     color: #00FF00 !important;
     font-family: 'VT323', monospace !important;
-    font-size: 14px !important;
+    font-size: 18px !important; /* Bigger font size for readability */
     border: none;
     outline: none;
-    text-align: center;
+    width: 300px; /* Adjust width for better look */
+    margin-left: 10px; /* Space between C:\> and input */
 }
 
-/* Button styles */
-button {
-    background-color: black !important;
-    color: #00FF00 !important;
-    font-family: 'VT323', monospace !important;
-    font-size: 14px !important;
-    border: 1px solid #00FF00;
-    padding: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+/* Timer styling for top-right */
+#countdown {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px !important; /* Larger font for the timer */
+    color: #00FF00; /* Green timer */
 }
 
-/* Hover effect for button */
-button:hover {
-    background-color: #00FF00 !important;
-    color: black !important;
-}
-
-/* Override all p tags to ensure the "0815" display is green */
-p {
-    color: #00FF00 !important;
-    font-family: 'VT323', monospace !important; /* ROM-like font */
-    font-size: 40px !important;
-    margin: 0;
+/* Timer display in format 00:00 */
+#timer {
+    font-size: 24px !important; /* Adjust timer size */
 }
