@@ -71,3 +71,25 @@ codeInput.addEventListener("keypress", (e) => {
 
 // Initialize timer display
 updateTimer();
+
+// Cursor hiding logic
+let cursorTimeout;
+
+function hideCursor() {
+    document.body.style.cursor = 'none'; // Hide the cursor
+}
+
+function showCursor() {
+    document.body.style.cursor = 'default'; // Show the cursor
+}
+
+// Event listener for mouse movement
+document.addEventListener('mousemove', () => {
+    showCursor(); // Show cursor on mouse move
+    clearTimeout(cursorTimeout); // Clear the timeout if mouse is moving
+
+    cursorTimeout = setTimeout(hideCursor, 1000); // Set timeout to hide cursor after 1 second of inactivity
+});
+
+// Start with the cursor hidden
+hideCursor();
