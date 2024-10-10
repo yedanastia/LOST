@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LOST Countdown</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOST Countdown</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> <!-- ROM-like font -->
 </head>
 <body>
-  <div id="container">
-    <h1>Enter the Numbers</h1>
-    <div id="timer">05:00</div>
-    <input type="text" id="codeInput" placeholder="Enter the numbers (4,8,15,16,23,42)">
-    <button onclick="checkCode()">Submit</button>
+    <div id="countdown">
+        <p id="timer">05:00</p> <!-- Countdown display -->
+    </div>
 
-    <audio id="alertAudio" src="alert.mp3"></audio> <!-- Replace alert.mp3 with your audio file -->
-  </div>
+    <div id="input-area">
+        <input type="text" id="code-input" maxlength="15" placeholder="Enter the code" autofocus>
+        <button onclick="checkCode()">Submit</button>
+    </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
