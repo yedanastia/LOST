@@ -3,6 +3,12 @@ body {
     color: #00FF00; /* Green text */
     font-family: "VT323", monospace; /* Use a ROM-like font */
     font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 input {
@@ -12,6 +18,7 @@ input {
     font-size: inherit;
     border: none;
     outline: none;
+    text-align: center;
 }
 
 button {
@@ -22,9 +29,14 @@ button {
     border: 1px solid #00FF00;
     padding: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: #00FF00;
     color: black;
+}
+
+#timer {
+    font-size: 24px;
 }

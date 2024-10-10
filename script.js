@@ -1,6 +1,6 @@
 let time = 300; // 5 minutes in seconds
 let countdownInterval;
-let warningAudio = new Audio('alert.mp3'); // Play sound when there's 1 minute left
+let warningAudio = new Audio('alert.mp3'); // Sound file for 1 minute warning
 
 function startCountdown() {
     countdownInterval = setInterval(updateTimer, 1000);
@@ -14,12 +14,12 @@ function updateTimer() {
     document.getElementById('timer').textContent = `${minutes}:${seconds}`;
 
     if (time === 60) {
-        warningAudio.play(); // Play warning sound when 1 minute left
+        warningAudio.play(); // Play warning sound when 1 minute is left
     }
 
     if (time === 0) {
         clearInterval(countdownInterval);
-        display0815(); // Call function to fill screen with 0815
+        display0815(); // Display "0815" when time reaches zero
     } else {
         time--;
     }
@@ -30,7 +30,7 @@ function checkCode() {
     const correctCode = "4 8 15 16 23 42";
 
     if (input === correctCode) {
-        warningAudio.pause(); // Stop sound
+        warningAudio.pause(); // Stop warning sound
         time = 300; // Reset to 5 minutes
         document.getElementById('timer').textContent = "05:00";
         document.getElementById('code-input').value = ''; // Clear input
@@ -38,7 +38,7 @@ function checkCode() {
 }
 
 function display0815() {
-    document.body.innerHTML = ''; // Clear the body content
+    document.body.innerHTML = ''; // Clear body content
 
     let interval = setInterval(() => {
         let message = document.createElement('p');
