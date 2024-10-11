@@ -31,9 +31,7 @@ setInterval(() => {
     }
 }, 1000);
 
-// Rest of the code remains the same...
-
-// Function to display failure message
+// Function to display failure message with timed interval
 function displayFailureMessage() {
     const failureMessages = document.createElement("div"); // Create a new div for messages
     failureMessages.id = "failureMessages"; // Assign an ID for styling
@@ -46,9 +44,22 @@ function displayFailureMessage() {
     failureMessages.style.whiteSpace = "pre-wrap"; // Keep whitespace formatting
     failureMessages.style.textAlign = "left"; // Align the text properly
 
-    // Display "SYSTEM FAILURE" 48 times horizontally separated by a space
-    let failureText = "SYSTEM FAILURE ".repeat(48); // Repeat the text 48 times
-    failureMessages.textContent = failureText + "Dharma Initiative Lockbox Code: 0815"; // Append the lockbox code
+    let count = 0; // Initialize count for repetitions
+    const maxCount = 48; // Total number of repetitions for "SYSTEM FAILURE"
+    let failureText = "";
+
+    // Use setInterval to display "SYSTEM FAILURE" 48 times with a delay of 104 ms
+    const interval = setInterval(() => {
+        if (count < maxCount) {
+            failureText += "SYSTEM FAILURE "; // Append text for each iteration
+            failureMessages.textContent = failureText; // Update the text content
+            count++;
+        } else {
+            // Once 48 repetitions are done, show the lockbox code
+            failureMessages.textContent += "Dharma Initiative Lockbox Code: 0815"; 
+            clearInterval(interval); // Stop the interval once the text is complete
+        }
+    }, 104); // Set 104 ms delay between each repetition
 }
 
 // Function to show the message when code is correct
@@ -67,7 +78,7 @@ function showMessage() {
 function checkCode() {
     const inputValue = codeInput.value;
     if (inputValue === "4 8 15 16 23 42") {
-        timeLeft = 300; // Reset the timer back to 5 minutes
+        timeLeft = 75; // Reset the timer back to 75 seconds for testing
         alarmPlayed = false; // Reset the alarm so it can play again
         codeInput.value = ""; // Clear the input
         showMessage(); // Show the message when the code is correct
