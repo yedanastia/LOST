@@ -5,7 +5,7 @@ const codeInput = document.getElementById("code-input");
 let alarmPlayed = false; // Flag to track if alarm has played
 
 // Alarm sound setup
-const alarmSound = new Audio('alarm.mp3'); // Ensure the alarm.mp3 file is in the correct location
+const alarmSound = new Audio('alert.mp3'); // Ensure the alert.mp3 file is in the correct location
 
 // Update timer display in format 00:00
 function updateTimer() {
