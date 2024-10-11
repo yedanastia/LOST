@@ -2,6 +2,10 @@
 let timeLeft = 300; // Start time is 5 minutes (300 seconds)
 const timerElement = document.getElementById("timer");
 const codeInput = document.getElementById("code-input");
+let alarmPlayed = false; // Flag to track if alarm has played
+
+// Alarm sound setup
+const alarmSound = new Audio('alarm.mp3'); // Ensure the alarm.mp3 file is in the correct location
 
 // Update timer display in format 00:00
 function updateTimer() {
@@ -10,6 +14,12 @@ function updateTimer() {
 
     // Format the timer with leading zeroes
     timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    // Play alarm sound when 1 minute is left and ensure it only plays once
+    if (timeLeft === 60 && !alarmPlayed) {
+        alarmSound.play();
+        alarmPlayed = true; // Set the flag to true to avoid replaying
+    }
 }
 
 setInterval(() => {
@@ -27,20 +37,17 @@ function displayFailureMessage() {
     failureMessages.id = "failureMessages"; // Assign an ID for styling
     document.body.appendChild(failureMessages); // Append the div to the body
 
-    // Display "SYSTEM FAILURE" 50 times
-    for (let i = 0; i < 50; i++) {
-        const failureLine = document.createElement("div");
-        failureLine.textContent = "SYSTEM FAILURE"; // Failure message
-        failureMessages.appendChild(failureLine); // Append each line
-    }
+    // Set up the style for green text
+    failureMessages.style.color = "green";
+    failureMessages.style.fontFamily = "'VT323', monospace"; // Ensure the font is correct
+    failureMessages.style.whiteSpace = "pre-wrap"; // Keep whitespace formatting
 
-    // Display the lockbox code after the failure messages
-    const lockboxLine = document.createElement("div");
-    lockboxLine.textContent = "Dharma Initiative Lockbox Code: 0815"; // Lockbox code
-    failureMessages.appendChild(lockboxLine); // Append the lockbox code
+    // Display "SYSTEM FAILURE" 50 times horizontally separated by a space
+    let failureText = "SYSTEM FAILURE ".repeat(50); // Repeat the text 50 times with spaces
+    failureMessages.textContent = failureText + "Dharma Initiative Lockbox Code: 0815"; // Append the lockbox code
 }
 
-// Function to show the message
+// Function to show the message when code is correct
 function showMessage() {
     const messageElement = document.getElementById("message");
     messageElement.textContent = "Code accepted. Timer reset."; // Set the message text
@@ -57,6 +64,7 @@ function checkCode() {
     const inputValue = codeInput.value;
     if (inputValue === "4 8 15 16 23 42") {
         timeLeft = 300; // Reset the timer back to 5 minutes
+        alarmPlayed = false; // Reset the alarm so it can play again
         codeInput.value = ""; // Clear the input
         showMessage(); // Show the message when the code is correct
     }
