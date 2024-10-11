@@ -1,5 +1,5 @@
 // Timer logic
-let timeLeft = 300; // Start time is 5 minutes (300 seconds)
+let timeLeft = 75; // Start time is 75 seconds for testing
 const timerElement = document.getElementById("timer");
 const codeInput = document.getElementById("code-input");
 let alarmPlayed = false; // Flag to track if alarm has played
@@ -15,7 +15,7 @@ function updateTimer() {
     // Format the timer with leading zeroes
     timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-    // Play alarm sound when 1 minute is left and ensure it only plays once
+    // Play alarm sound when 1 minute (60 seconds) is left and ensure it only plays once
     if (timeLeft === 60 && !alarmPlayed) {
         alarmSound.play();
         alarmPlayed = true; // Set the flag to true to avoid replaying
@@ -27,9 +27,11 @@ setInterval(() => {
         timeLeft--;
         updateTimer();
     } else {
-        displayFailureMessage(); // Call the new function when timer expires
+        displayFailureMessage(); // Call the function when timer expires
     }
 }, 1000);
+
+// Rest of the code remains the same...
 
 // Function to display failure message
 function displayFailureMessage() {
@@ -37,13 +39,15 @@ function displayFailureMessage() {
     failureMessages.id = "failureMessages"; // Assign an ID for styling
     document.body.appendChild(failureMessages); // Append the div to the body
 
-    // Set up the style for green text
-    failureMessages.style.color = "green";
+    // Set up the style to match the timer color
+    const timerColor = window.getComputedStyle(timerElement).color; // Get the timer's color
+    failureMessages.style.color = timerColor; // Use the same color for "SYSTEM FAILURE"
     failureMessages.style.fontFamily = "'VT323', monospace"; // Ensure the font is correct
     failureMessages.style.whiteSpace = "pre-wrap"; // Keep whitespace formatting
+    failureMessages.style.textAlign = "left"; // Align the text properly
 
-    // Display "SYSTEM FAILURE" 50 times horizontally separated by a space
-    let failureText = "SYSTEM FAILURE ".repeat(50); // Repeat the text 50 times with spaces
+    // Display "SYSTEM FAILURE" 48 times horizontally separated by a space
+    let failureText = "SYSTEM FAILURE ".repeat(48); // Repeat the text 48 times
     failureMessages.textContent = failureText + "Dharma Initiative Lockbox Code: 0815"; // Append the lockbox code
 }
 
