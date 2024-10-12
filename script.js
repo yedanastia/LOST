@@ -1,5 +1,5 @@
 // Timer logic
-let timeLeft = 300; // 300 seconds = 5 minutes
+let timeLeft = 300; // Start time is 300 seconds for testing
 const timerElement = document.getElementById("timer");
 const codeInput = document.getElementById("code-input");
 let alarmPlayed = false; // Flag to track if alarm has played
@@ -33,9 +33,16 @@ setInterval(() => {
 
 // Function to display failure message with timed interval
 function displayFailureMessage() {
-    const failureMessages = document.getElementById("failureMessages");
-    failureMessages.style.color = window.getComputedStyle(timerElement).color; // Use the same color for "SYSTEM FAILURE"
+    const failureMessages = document.createElement("div"); // Create a new div for messages
+    failureMessages.id = "failureMessages"; // Assign an ID for styling
+    document.body.appendChild(failureMessages); // Append the div to the body
+
+    // Set up the style to match the timer color
+    const timerColor = window.getComputedStyle(timerElement).color; // Get the timer's color
+    failureMessages.style.color = timerColor; // Use the same color for "SYSTEM FAILURE"
     failureMessages.style.fontFamily = "'VT323', monospace"; // Ensure the font is correct
+    failureMessages.style.whiteSpace = "pre-wrap"; // Keep whitespace formatting
+    failureMessages.style.textAlign = "left"; // Align the text properly
 
     let count = 0; // Initialize count for repetitions
     const maxCount = 48; // Total number of repetitions for "SYSTEM FAILURE"
@@ -49,7 +56,7 @@ function displayFailureMessage() {
             count++;
         } else {
             // Once 48 repetitions are done, show the lockbox code
-            failureMessages.textContent += "Dharma Initiative Lockbox Code: 0815";
+            failureMessages.textContent += "Dharma Initiative Lockbox Code: 0815"; 
             clearInterval(interval); // Stop the interval once the text is complete
         }
     }, 104); // Set 104 ms delay between each repetition
@@ -71,7 +78,7 @@ function showMessage() {
 function checkCode() {
     const inputValue = codeInput.value;
     if (inputValue === "4 8 15 16 23 42") {
-        timeLeft = 300; // Reset the timer back to 300 seconds
+        timeLeft = 75; // Reset the timer back to 75 seconds for testing
         alarmPlayed = false; // Reset the alarm so it can play again
         codeInput.value = ""; // Clear the input
         showMessage(); // Show the message when the code is correct
