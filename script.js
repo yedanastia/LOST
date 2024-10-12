@@ -79,7 +79,7 @@ function showMessage() {
 function checkCode() {
     const inputValue = codeInput.value;
     if (inputValue === "4 8 15 16 23 42") {
-        timeLeft = 75; // Reset the timer back to 75 seconds for testing
+        timeLeft = 300; // Reset the timer back to 300 seconds for testing
         alarmPlayed = false; // Reset the alarm so it can play again
         codeInput.value = ""; // Clear the input
         showMessage(); // Show the message when the code is correct
