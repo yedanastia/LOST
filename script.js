@@ -27,9 +27,10 @@ setInterval(() => {
         timeLeft--;
         updateTimer();
     } else {
-        displayFailureMessage(); // Call the function when timer expires
+        setTimeout(displayFailureMessage, 15000); // Add a 15-second delay before failure message
     }
 }, 1000);
+
 
 // Function to display failure message with timed interval
 function displayFailureMessage() {
